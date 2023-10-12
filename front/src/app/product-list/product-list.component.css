@@ -1,0 +1,12 @@
+.primeng-container .p-grid {
+    display: flex;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+.primeng-container .p-col-4 {
+    flex: 1;
+    
+}
+.primeng-container .p-col-8 {
+    flex: 4;
+}

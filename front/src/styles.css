@@ -2,6 +2,10 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeng/resources/themes/saga-blue/theme.css';
+@import '~primeicons/primeicons.css';
+
 body {
     background-image: url('/assets/background.png');
     overflow: hidden;

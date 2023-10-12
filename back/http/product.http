@@ -1,17 +1,17 @@
 @URL=http://localhost:3000/api/products
 
 ### GET products
-GET {{URL}}
+GET {{URL}}?page=2&limit=10
 
 ### get product by id
-GET {{URL}}/652840f915d8deffd6f6658f
+GET {{URL}}/652844275a1562b53bdcd40a
 
 ### POST products
 POST {{URL}}
 content-type: application/json
 
 {
-    "name": "Smartphone X Pro",
+    "name": "Smartphone X5 Pro",
     "description": "Un smartphone de alta gama con pantalla OLED de 6.5 pulgadas y cámara triple.",
     "sku": "SMRTXPRO12345",
     "imageUrl": "https://example.com/images/smartphone-x-pro.jpg",
@@ -21,17 +21,17 @@ content-type: application/json
 }
 
 ### PUT products
-PUT {{URL}}/652840f915d8deffd6f6658f
+PUT {{URL}}/652844275a1562b53bdcd40a
 content-type: application/json
 
 {
-    "name": "Smartphone X2 Pro",
+    "name": "Smartphone X3 Pro",
     "description": "Un smartphone de alta gama con pantalla OLED de 6.5 pulgadas y cámara triple.",
     "sku": "SMRTXPRO12345",
     "imageUrl": "https://example.com/images/smartphone-x-pro.jpg",
     "tags": ["Tecnología", "Móvil", "Electrónicos"],
-    "price": 999.99,
-    "stock": 50
+    "price": 800.99,
+    "stock": 61
 }
 
 ### delete product by id

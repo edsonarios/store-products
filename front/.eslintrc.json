@@ -1,0 +1,33 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended"
+      // "plugin:@typescript-eslint/recommended",
+      // "plugin:@angular-eslint/recommended"
+    ],
+    "rules": {
+      "indent": ["error", 4]
+      // "@angular-eslint/component-selector": [
+      //   "error",
+      //   {
+      //     "type": "element",
+      //     "prefix": "app",
+      //     "style": "kebab-case"
+      //   }
+      // ],
+      // "@angular-eslint/directive-selector": [
+      //   "error",
+      //   {
+      //     "type": "attribute",
+      //     "prefix": "app",
+      //     "style": "camelCase"
+      //   }
+      // ]
+      // Añade cualquier otra regla que desees aquí
+    }
+  }
+  

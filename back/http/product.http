@@ -35,4 +35,4 @@ content-type: application/json
 }
 
 ### delete product by id
-DELETE {{URL}}/65284260da4945c9210a173a
+DELETE {{URL}}/6528503f7c6f23105eecef1e

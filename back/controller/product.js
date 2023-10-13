@@ -1,4 +1,19 @@
 const Product = require('../models/product')
+const examples = require('./examples.json')
+
+exports.fillProducts = async (req, res) => {
+    try {
+        const savePromises = examples.map(async data => {
+            const product = new Product(data)
+            const newProduct = await product.save()
+            return newProduct
+        })
+        const newProducts = await Promise.all(savePromises)
+        res.status(201).json(newProducts)
+    } catch (err) {
+        res.status(400).send({ message: err.message })
+    }
+}
 
 exports.getProducts = async (req, res, next) => {
     try {

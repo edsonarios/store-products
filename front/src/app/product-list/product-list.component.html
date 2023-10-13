@@ -5,7 +5,11 @@
             <app-filter></app-filter>
         </div>
         <div class="col-10 ">
-            <app-product [products]="products"></app-product>
+            <app-product
+            [products]="products"
+            [totalRecords]="totalRecords"
+            (pageChange)="handlePageChange($event)"
+            ></app-product>
         </div>
     </div>
 </div>

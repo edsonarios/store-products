@@ -12,8 +12,9 @@ export class ProductService {
 
     constructor(private http: HttpClient) { }
 
-    getProducts(): Observable<ListProduct> {
+    getProducts(page: number = 1, limit: number = 5): Observable<ListProduct> {
         console.log(this.apiUrl)
-        return this.http.get<ListProduct>(this.apiUrl + '/products')
+        console.log('page', page, "limit", limit)
+        return this.http.get<ListProduct>(this.apiUrl + `/products?page=${page}&limit=${limit}`)
     }
 }

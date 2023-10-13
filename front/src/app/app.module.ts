@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { FormsModule } from '@angular/forms'
 
 import { ProductListComponent } from './product-list/product-list.component'
 import { FilterComponent } from './product-list/filter/filter.component'
@@ -23,6 +24,7 @@ import { TagModule } from 'primeng/tag'
 import { BadgeModule } from 'primeng/badge'
 import { ToastModule } from 'primeng/toast'
 import { RippleModule } from 'primeng/ripple'
+import { PaginatorModule } from 'primeng/paginator'
 
 @NgModule({
     declarations: [
@@ -40,13 +42,15 @@ import { RippleModule } from 'primeng/ripple'
         BrowserAnimationsModule,
         AppRoutingModule,
         HttpClientModule,
+        FormsModule,        
         DataViewModule,
         RatingModule,
         ButtonModule,
         TagModule,
         BadgeModule,
         ToastModule,
-        RippleModule
+        RippleModule,
+        PaginatorModule
     ],
     providers: [],
     bootstrap: [AppComponent],

@@ -8,18 +8,36 @@ import { ProductService } from '../services/product.service'
     styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+    layout: 'list' | 'grid' = 'grid'
+
     products: Product[] = []
 
     constructor(private productService: ProductService) { }
 
     ngOnInit(): void {
-        this.productService.getProducts().subscribe(
-            data => {
-                this.products = data.data
+        this.productService.getProducts().subscribe({
+            next: (listProduct) => {
+                this.products = listProduct.data
                 console.log(this.products)
-                console.log(data)
             },
-            error => console.log(error)
-        )
+            error: (error) => {
+                console.error('Error fetching products', error)
+            }
+        })
+    }
+    getSeverity(product: Product) {
+        switch (product.inventoryStatus) {
+        case 'INSTOCK':
+            return 'success'
+
+        case 'LOWSTOCK':
+            return 'warning'
+
+        case 'OUTOFSTOCK':
+            return 'danger'
+
+        default:
+            return null
+        }
     }
 }

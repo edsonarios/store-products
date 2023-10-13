@@ -18,6 +18,9 @@ export interface Product {
     priceHistory: PriceHistory[]
     stockHistory: StockHistory[]
     __v?: number
+    rating?:number
+    inventoryStatus?:string
+    category?:string
 }
 
 export interface PriceHistory {

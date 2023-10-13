@@ -11,14 +11,27 @@ POST {{URL}}
 content-type: application/json
 
 {
-    "name": "Smartphone X5 Pro",
-    "description": "Un smartphone de alta gama con pantalla OLED de 6.5 pulgadas y cámara triple.",
-    "sku": "SMRTXPRO12345",
-    "imageUrl": "https://example.com/images/smartphone-x-pro.jpg",
-    "tags": ["Tecnología", "Móvil", "Electrónicos"],
-    "price": 999.99,
-    "stock": 50
+    "name": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+    "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
+    "sku": "10",
+    "imageUrl": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+    "tags": ["electronics", "SSD", "1TB", "SanDisk"],
+    "price": 109,
+    "stock": 470,
+    "priceHistory": [
+        {"date": "2023-05-01T00:00:00Z", "price": 120},
+        {"date": "2023-06-01T00:00:00Z", "price": 109}
+    ],
+    "stockHistory": [
+        {"date": "2023-05-01T00:00:00Z", "stock": 500},
+        {"date": "2023-06-01T00:00:00Z", "stock": 470}
+    ],
+    "rating": 4,
+    "category": "Accessories",
+    "inventoryStatus": "INSTOCK"
 }
+
+
 
 ### PUT products
 PUT {{URL}}/652844275a1562b53bdcd40a

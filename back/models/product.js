@@ -13,7 +13,10 @@ const productSchema = new mongoose.Schema({
     price: Number,
     stock: Number,
     priceHistory: [{ date: Date, price: Number }],
-    stockHistory: [{ date: Date, stock: Number }]
+    stockHistory: [{ date: Date, stock: Number }],
+    rating: Number,
+    category: String,
+    inventoryStatus: String
 })
 
 const Product = mongoose.model('Product', productSchema)

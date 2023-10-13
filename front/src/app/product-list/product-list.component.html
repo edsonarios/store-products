@@ -1,11 +1,11 @@
 <app-header></app-header>
-<div class="primeng-container ">
-    <div class="p-grid bg-slate-900">
-        <div class="p-col-4 bg-red-400">
-            <p>Filtros</p>
+<div class="primeng-container">
+    <div class="p-grid flex flex-wrap">
+        <div class="col-2">
+            <app-filter></app-filter>
         </div>
-        <div class="p-col-8 bg-blue-400">
-            
+        <div class="col-10 ">
+            <app-product [products]="products"></app-product>
         </div>
     </div>
 </div>

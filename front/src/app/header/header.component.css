@@ -1,0 +1,27 @@
+.header-container {
+  background-color: #0e0e1b;
+  color: white;
+  padding: 14px;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.logo {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.header-text {
+  margin: 0;
+}

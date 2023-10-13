@@ -1,1 +1,17 @@
-<p>Filters</p>
+<div class="card xl:flex xl:justify-content-center w-full">
+    <p-orderList [value]="products" [listStyle]="{ 'max-height': '40rem' }" header="Products" [dragdrop]="true">
+        <ng-template let-product pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center gap-3">
+                <img [src]="product.imageUrl" [alt]="product.name" class="w-4rem shadow-2 flex-shrink-0 border-round" />
+                <div class="flex-1 flex flex-column gap-2">
+                    <span class="font-bold">{{ product.name }}</span>
+                    <div class="flex align-items-center gap-2">
+                        <i class="pi pi-tag text-sm"></i>
+                        <span>{{ product.tags.join(', ') }}</span>
+                    </div>
+                </div>
+                <span class="font-bold text-900">{{ '$' + product.price }}</span>
+            </div>
+        </ng-template>
+    </p-orderList>
+</div>

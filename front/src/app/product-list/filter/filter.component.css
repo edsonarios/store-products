@@ -1,0 +1,9 @@
+
+:host ::ng-deep .p-orderlist-controls {
+    display: none;
+}
+.p-orderlist {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}

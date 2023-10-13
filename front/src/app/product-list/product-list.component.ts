@@ -26,7 +26,7 @@ export class ProductListComponent implements OnInit {
             next: (response) => {
                 this.products = response.data
                 this.totalRecords = response.total
-                console.log(this.totalRecords)
+                console.log(this.products)
             },
             error: (error) => {
                 console.error('Error fetching products', error)

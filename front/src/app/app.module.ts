@@ -25,6 +25,9 @@ import { BadgeModule } from 'primeng/badge'
 import { ToastModule } from 'primeng/toast'
 import { RippleModule } from 'primeng/ripple'
 import { PaginatorModule } from 'primeng/paginator'
+import { MultiSelectModule } from 'primeng/multiselect'
+import { PickListModule } from 'primeng/picklist'
+import { OrderListModule } from 'primeng/orderlist'
 
 @NgModule({
     declarations: [
@@ -50,7 +53,10 @@ import { PaginatorModule } from 'primeng/paginator'
         BadgeModule,
         ToastModule,
         RippleModule,
-        PaginatorModule
+        PaginatorModule,
+        MultiSelectModule,
+        PickListModule,
+        OrderListModule
     ],
     providers: [],
     bootstrap: [AppComponent],

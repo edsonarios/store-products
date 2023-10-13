@@ -2,10 +2,15 @@
   background-color: #0e0e1b;
   color: white;
   padding: 14px;
+  position:fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .header-content {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: auto;
   display: flex;
   justify-content: space-between;

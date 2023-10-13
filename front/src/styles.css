@@ -9,7 +9,7 @@
 
 body {
     background-image: url('/assets/background.png');
-    overflow: auto;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -17,4 +17,5 @@ body {
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    padding-top: 70px;
 }

@@ -117,3 +117,15 @@ exports.deleteProduct = async (req, res, next) => {
         next(err)
     }
 }
+
+exports.getTags = async (req, res, next) => {
+    try {
+        const tags = await Product.distinct('tags')
+        res.status(200).json({
+            total: tags.length,
+            data: tags
+        })
+    } catch (err) {
+        next(err)
+    }
+}

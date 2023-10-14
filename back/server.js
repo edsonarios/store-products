@@ -11,7 +11,7 @@ const productRoutes = require('./routes/product.js')
 app.use(cors())
 app.use(bodyParser.json())
 app.use(logger('dev'))
-app.use('/api', productRoutes)
+app.use('/api/products', productRoutes)
 app.use(errorHandler)
 
 app.listen(PORT, () => {

@@ -9,7 +9,7 @@ GET {{URL}}?page=1&limit=100
 GET {{URL}}?page=2&limit=5&category=jacket,outdoor
 
 ### get product by id
-GET {{URL}}/652844275a1562b53bdcd40a
+GET {{URL}}/getById/652844275a1562b53bdcd40a
 
 ### POST products
 POST {{URL}}
@@ -56,4 +56,7 @@ content-type: application/json
 DELETE {{URL}}/6528503f7c6f23105eecef1e
 
 ### GET fill with 10 elements
-GET {{URL}}-examples
+GET {{URL}}/examples
+
+### GET all tags 
+GET {{URL}}/tags

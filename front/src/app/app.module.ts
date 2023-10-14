@@ -28,6 +28,10 @@ import { PaginatorModule } from 'primeng/paginator'
 import { MultiSelectModule } from 'primeng/multiselect'
 import { PickListModule } from 'primeng/picklist'
 import { OrderListModule } from 'primeng/orderlist'
+import { InputTextModule } from 'primeng/inputtext'
+import { CheckboxModule } from 'primeng/checkbox'
+import { RadioButtonModule } from 'primeng/radiobutton'
+import { SelectButtonModule } from 'primeng/selectbutton'
 
 @NgModule({
     declarations: [
@@ -56,7 +60,11 @@ import { OrderListModule } from 'primeng/orderlist'
         PaginatorModule,
         MultiSelectModule,
         PickListModule,
-        OrderListModule
+        OrderListModule,
+        InputTextModule,
+        CheckboxModule,
+        RadioButtonModule,
+        SelectButtonModule
     ],
     providers: [],
     bootstrap: [AppComponent],

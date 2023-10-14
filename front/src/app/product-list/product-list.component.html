@@ -1,17 +1,58 @@
 <app-header></app-header>
 <div class="primeng-container">
     <div class="grid">
+        <div class="col-5">
+            <div class="p-inputgroup mt-4 mb-4 ml-4 ">
+                <input type="text" pInputText placeholder="Search Product..." class="w-4 search-field" />
+                <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn"
+                    class="search-button w-1"></button>
+            </div>
+        </div>
+        <div class="col-7 card flex">
+            <div class="card flex mt-4 ml-4">
+                <p-multiSelect [options]="countries" [(ngModel)]="selectedCountries" defaultLabel="Select a Country"
+                    optionLabel="name">
+                    <ng-template let-value pTemplate="selectedItems">
+                        <div class="flex align-items-center gap-2" *ngFor="let option of selectedCountries">
+                            <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                [class]="'flag flag-' + option.code.toLowerCase()" style="width: 18px" />
+                            <div>{{ option.name }}</div>
+                        </div>
+                        <div *ngIf="!selectedCountries || selectedCountries.length === 0">All Categories</div>
+                    </ng-template>
+                    <ng-template let-country pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px" />
+                            <div>{{ country.name }}</div>
+                        </div>
+                    </ng-template>
+                </p-multiSelect>
+            </div>
+            <div class="card flex flex-column md:flex-row gap-3 ml-4">
+                <p class="mt-5 font-bold text-white">Choise Rating:
+                </p>
+                <p-selectButton [options]="paymentOptions" [(ngModel)]="value" [multiple]="true" styleClass="success"  optionLabel="name" optionValue="value" class="mt-4"></p-selectButton>
+            </div>
+                
+            <div class="card flex flex-column md:flex-row gap-3">
+                <div class="p-inputgroup w-8 ml-4 mt-4 mb-4">
+                    <span class="p-inputgroup-addon">$</span>
+                    <input type="text" pInputText placeholder="Price" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="primeng-container">
+    <div class="grid">
         <div class="col-2">
-            <app-filter
-            [products]="products"
-            ></app-filter>
+            <app-filter [products]="products"></app-filter>
         </div>
         <div class="col-10 ">
-            <app-product
-            [products]="products"
-            [totalRecords]="totalRecords"
-            (pageChange)="handlePageChange($event)"
-            ></app-product>
+            <app-product [products]="products" [totalRecords]="totalRecords"
+                (pageChange)="handlePageChange($event)"></app-product>
         </div>
     </div>
 </div>

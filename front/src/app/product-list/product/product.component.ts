@@ -7,7 +7,7 @@ import { Product } from 'src/app/services/product.type'
     templateUrl: './product.component.html',
     styleUrls: ['./product.component.css']
 })
-export class ProductComponent {
+export class ProductComponent{
     @Input() products: Product[] = []
     @Input() totalRecords: number = 0
     @Output() pageChange: EventEmitter<any> = new EventEmitter<any>()

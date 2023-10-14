@@ -1,8 +1,24 @@
 .col-2 {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
-.col-10{
-    padding: 0;
-    margin: 0;
+.col-10 {
+  padding: 0;
+  margin: 0;
+}
+
+.multi {
+    margin-top: 25px;
+    background-color: blue;
+    font-size: 20px;
+    width: 100px;
+}
+
+.search-field {
+    border-radius: 5px;
+
+}
+.search-button{
+    background-color: #f04400;
+    border-radius: 5px;
 }

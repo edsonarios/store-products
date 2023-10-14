@@ -2,7 +2,14 @@
 import { Component, OnInit } from '@angular/core'
 import { Product } from '../services/product.type'
 import { ProductService } from '../services/product.service'
-
+interface City {
+    name: string,
+    code: string
+}
+interface Country {
+    name: string;
+    code: string;
+}
 @Component({
     selector: 'app-product-list',
     templateUrl: './product-list.component.html',
@@ -15,10 +22,46 @@ export class ProductListComponent implements OnInit {
     page: number = 1
     limit: number = 5
 
+    cities!: City[]
+
+    selectedCities!: City[]
+    countries!: Country[]
+
+    selectedCountries!: Country[]
+    value!: number
+    
+    paymentOptions: any[] = [
+        { name: '⭐', value: 1 },
+        { name: '⭐', value: 2 },
+        { name: '⭐', value: 3 },
+        { name: '⭐', value: 4 },
+        { name: '⭐', value: 5 }
+    ]
+
     constructor(private productService: ProductService) { }
 
     ngOnInit(): void {
         this.loadProducts(this.page, this.limit)
+        this.cities = [
+            { name: 'New York', code: 'NY' },
+            { name: 'Rome', code: 'RM' },
+            { name: 'London', code: 'LDN' },
+            { name: 'Istanbul', code: 'IST' },
+            { name: 'Paris', code: 'PRS' }
+        ]
+        this.countries = [
+            { name: 'Australia', code: 'AU' },
+            { name: 'Brazil', code: 'BR' },
+            { name: 'China', code: 'CN' },
+            { name: 'Egypt', code: 'EG' },
+            { name: 'France', code: 'FR' },
+            { name: 'Germany', code: 'DE' },
+            { name: 'India', code: 'IN' },
+            { name: 'Japan', code: 'JP' },
+            { name: 'Spain', code: 'ES' },
+            { name: 'United States', code: 'US' }
+        ]
+        
     }
     
     loadProducts(page: number, limit: number): void {

@@ -2,12 +2,12 @@ import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core'
 import { Product } from 'src/app/services/product.type'
 
 @Component({
-    selector: 'app-filter',
-    templateUrl: './filter.component.html',
-    styleUrls:['./filter.component.css']
+    selector: 'app-shopping-cart',
+    templateUrl: './shopping-cart.component.html',
+    styleUrls:['./shopping-cart.component.css']
 })
 
-export class FilterComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit {
     @Input() products: Product[] = []
     sourceProducts!: Product[]
 

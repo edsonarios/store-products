@@ -7,3 +7,9 @@
     margin: 0;
     width: 100%;
 }
+
+.centered-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

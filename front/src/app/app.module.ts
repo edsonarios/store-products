@@ -8,7 +8,7 @@ import { AppComponent } from './app.component'
 import { FormsModule } from '@angular/forms'
 
 import { ProductListComponent } from './product-list/product-list.component'
-import { FilterComponent } from './product-list/filter/filter.component'
+import { ShoppingCartComponent } from './product-list/shopping-cart/shopping-cart.component'
 import { ProductComponent } from './product-list/product/product.component'
 
 import { ProductDetailComponent } from './product-detail/product-detail.component'
@@ -39,7 +39,7 @@ import { KeyFilterModule } from 'primeng/keyfilter'
     declarations: [
         AppComponent,
         ProductListComponent,
-        FilterComponent,
+        ShoppingCartComponent,
         ProductComponent,
         ProductDetailComponent,
         ProductCreateComponent,

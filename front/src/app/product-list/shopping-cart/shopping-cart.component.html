@@ -1,5 +1,11 @@
 <div class="card xl:flex xl:justify-content-center w-full">
-    <p-orderList [value]="products" [listStyle]="{ 'max-height': '40rem' }" header="Products" [dragdrop]="true">
+    <p-orderList [value]="products" [listStyle]="{ 'max-height': '40rem' }" header="Shopping Cart" [dragdrop]="true">
+        <ng-template pTemplate="header">
+            <div class="centered-header">
+                <i class="pi pi-shopping-cart p-mr-2 mr-3"></i>
+                <span>Shopping Cart</span>
+            </div>
+        </ng-template>
         <ng-template let-product pTemplate="item">
             <div class="flex flex-wrap p-2 align-items-center gap-3">
                 <img [src]="product.imageUrl" [alt]="product.name" class="w-4rem shadow-2 flex-shrink-0 border-round" />

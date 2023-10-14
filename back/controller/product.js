@@ -17,13 +17,31 @@ exports.fillProducts = async (req, res) => {
 
 exports.getProducts = async (req, res, next) => {
     try {
+        // Filters by query
         const page = parseInt(req.query.page) || 1
         const limit = parseInt(req.query.limit) || 10
+        const nameFilter = req.query.name || ''
+        const priceFilter = parseFloat(req.query.price) || null
+        const ratingFilter = parseInt(req.query.rating) || null
+        let categories = req.query.category
+        if (typeof categories === 'string') {
+            categories = categories.split(',')
+        }
 
+        // Make filters
+        const filter = {}
+        if (nameFilter) filter.name = new RegExp(nameFilter, 'i')
+        if (priceFilter) filter.price = { $lte: priceFilter }
+        if (ratingFilter) filter.rating = { $gte: ratingFilter }
+        if (categories && categories.length > 0) {
+            filter.tags = { $in: categories }
+        }
+
+        // Pagination
         const skip = (page - 1) * limit
-        const total = await Product.countDocuments()
+        const total = await Product.countDocuments(filter)
 
-        const products = await Product.find().skip(skip).limit(limit)
+        const products = await Product.find(filter).skip(skip).limit(limit)
 
         res.status(200).json({
             total,

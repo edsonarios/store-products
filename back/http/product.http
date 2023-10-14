@@ -1,7 +1,12 @@
 @URL=http://localhost:3000/api/products
 
-### GET products
-GET {{URL}}?page=2&limit=10
+### GET all products
+GET {{URL}}
+### GET products with pagination
+GET {{URL}}?page=1&limit=100
+
+### GET products by filters
+GET {{URL}}?page=2&limit=5&category=jacket,outdoor
 
 ### get product by id
 GET {{URL}}/652844275a1562b53bdcd40a

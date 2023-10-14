@@ -32,6 +32,8 @@ import { InputTextModule } from 'primeng/inputtext'
 import { CheckboxModule } from 'primeng/checkbox'
 import { RadioButtonModule } from 'primeng/radiobutton'
 import { SelectButtonModule } from 'primeng/selectbutton'
+import { ImageModule } from 'primeng/image'
+import { KeyFilterModule } from 'primeng/keyfilter'
 
 @NgModule({
     declarations: [
@@ -64,7 +66,9 @@ import { SelectButtonModule } from 'primeng/selectbutton'
         InputTextModule,
         CheckboxModule,
         RadioButtonModule,
-        SelectButtonModule
+        SelectButtonModule,
+        ImageModule,
+        KeyFilterModule
     ],
     providers: [],
     bootstrap: [AppComponent],

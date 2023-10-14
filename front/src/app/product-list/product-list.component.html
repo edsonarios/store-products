@@ -1,13 +1,15 @@
 <app-header></app-header>
 <div class="primeng-container">
     <div class="grid">
+        <!-- Search -->
         <div class="col-5">
             <div class="p-inputgroup mt-4 mb-4 ml-4 ">
-                <input type="text" pInputText placeholder="Search Product..." class="w-4 search-field" />
+                <input type="text" pInputText placeholder="Search Product..." class="w-4 search-field" [(ngModel)]="searchTerm" (keyup.enter)="searchProducts()"/>
                 <button type="button" pButton icon="pi pi-search" styleClass="p-button-warn"
-                    class="search-button w-1"></button>
+                    class="search-button w-1" (click)="searchProducts()"></button>
             </div>
         </div>
+
         <div class="col-7 card flex">
             <div class="card flex mt-4 ml-4">
                 <p-multiSelect [options]="countries" [(ngModel)]="selectedCountries" defaultLabel="Select a Country"

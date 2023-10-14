@@ -22,6 +22,8 @@ export class ProductListComponent implements OnInit {
     page: number = 1
     limit: number = 5
 
+    searchTerm: string = ''
+
     cities!: City[]
 
     selectedCities!: City[]
@@ -64,12 +66,12 @@ export class ProductListComponent implements OnInit {
         
     }
     
-    loadProducts(page: number, limit: number): void {
-        this.productService.getProducts(page, limit).subscribe({
+    loadProducts(page: number, limit: number, name?: string): void {
+        this.productService.getProducts(page, limit, name).subscribe({
             next: (response) => {
                 this.products = response.data
                 this.totalRecords = response.total
-                console.log(this.products)
+                console.log(response)
             },
             error: (error) => {
                 console.error('Error fetching products', error)
@@ -80,6 +82,10 @@ export class ProductListComponent implements OnInit {
     handlePageChange(event: any): void {
         this.page = event.page +1
         this.limit = event.rows
-        this.loadProducts(this.page, this.limit)
+        this.loadProducts(this.page, this.limit, this.searchTerm)
+    }
+
+    searchProducts() {
+        this.loadProducts(1, this.limit, this.searchTerm)
     }
 }

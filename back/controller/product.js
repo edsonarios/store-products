@@ -121,9 +121,12 @@ exports.deleteProduct = async (req, res, next) => {
 exports.getTags = async (req, res, next) => {
     try {
         const tags = await Product.distinct('tags')
+        const objectTags = tags.map(name => {
+            return { name }
+        })
         res.status(200).json({
             total: tags.length,
-            data: tags
+            data: objectTags
         })
     } catch (err) {
         next(err)

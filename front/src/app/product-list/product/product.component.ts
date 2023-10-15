@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { Product } from 'src/app/services/product.type'
+import { Product } from 'src/app/types/product.type'
 
 @Component({
     selector: 'app-product',

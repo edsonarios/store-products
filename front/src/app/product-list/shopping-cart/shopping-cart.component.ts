@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core'
-import { Product } from 'src/app/services/product.type'
+import { Product } from 'src/app/types/product.type'
 
 @Component({
     selector: 'app-shopping-cart',

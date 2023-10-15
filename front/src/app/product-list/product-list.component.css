@@ -7,18 +7,15 @@
   margin: 0;
 }
 
-.multi {
-    margin-top: 25px;
-    background-color: blue;
-    font-size: 20px;
-    width: 100px;
-}
-
 .search-field {
-    border-radius: 5px;
-
+  border-radius: 5px;
 }
-.search-button{
-    background-color: #f04400;
-    border-radius: 5px;
+.search-button {
+  background-color: #f04400;
+  border-radius: 5px;
+}
+
+:host ::ng-deep .p-multiselect {
+  min-width: 10rem;
+  max-width: 10rem;
 }

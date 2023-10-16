@@ -5,6 +5,7 @@ import { ListProduct, Product } from '../types/product.type'
 import { environment } from '../../environment'
 import { Categories, Category } from '../types/category.type'
 import { MessageService } from 'primeng/api'
+import { ProductDeleted } from '../types/delete.type'
 
 @Injectable({
     providedIn: 'root'
@@ -73,5 +74,10 @@ export class ProductService {
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'There was an error editing the product.' })
             }
         })
+    }
+
+    deleteProduct(id: string): Observable<ProductDeleted> {
+        const url = `${this.apiUrl}/${id}`
+        return this.http.delete<ProductDeleted>(url)
     }
 }

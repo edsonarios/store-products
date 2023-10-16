@@ -1,5 +1,4 @@
 <app-header></app-header>
-<p-toast position="bottom-right"></p-toast>
 <div class="form-container mt-6 mb-6">
     <div class="card-form">
         <div class="title-container">
@@ -50,8 +49,7 @@
                 <!-- SKU -->
                 <div class="col-8 p-field">
                     <label for="sku">SKU</label>
-                    <input id="sku" type="text" pInputText [(ngModel)]="product.sku"
-                        placeholder="Enter sku product" />
+                    <input id="sku" type="text" pInputText [(ngModel)]="product.sku" placeholder="Enter sku product" />
                 </div>
 
                 <!-- Rating -->
@@ -65,16 +63,10 @@
 
             <!-- Category -->
             <div class="p-field mt-4">
-                    <label for="rating">Categories</label>
-                    <p-autoComplete
-                    [(ngModel)]="selectedCategories"
-                    [dropdown]="true"
-                    [suggestions]="suggestionCategories" 
-                    (completeMethod)="filterCategoryForSuggestion($event)"
-                    [multiple]="true"
-                    (keyup.enter)="addNewCategory($event)"
-                    placeholder="Select or add a category"
-                    ></p-autoComplete>
+                <label for="rating">Categories</label>
+                <p-autoComplete [(ngModel)]="selectedCategories" [dropdown]="true" [suggestions]="suggestionCategories"
+                    (completeMethod)="filterCategoryForSuggestion($event)" [multiple]="true"
+                    (keyup.enter)="addNewCategory($event)" placeholder="Select or add a category"></p-autoComplete>
 
             </div>
 
@@ -90,10 +82,19 @@
                 <img [src]="imagePreviewUrl" *ngIf="showImagePreview" alt="Image preview" class="image-preview">
             </div>
 
-            <!-- Submit Button -->
-            <div class="p-field mt-4 ">
-                <p-button type="button" label="Edit Product" severity="warning" (onClick)="onSubmit()"></p-button>
+            <!-- Submit Buttons -->
+            <div class="p-field flex flex-row mt-2">
+                <div class="col-6 p-field">
+                    <p-button type="button" label="Edit Product" severity="warning" (click)="editProduct()"></p-button>
+                </div>
+                <div class="col-6 p-field">
+                    <p-button type="button" label="Delete Product" severity="danger"
+                        (click)="deleteProduct()"></p-button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<p-toast position="bottom-right"></p-toast>
+<p-confirmDialog #cd [style]="{ width: '30vw' }" key="confirmKey">
+</p-confirmDialog>

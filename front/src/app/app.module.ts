@@ -38,6 +38,8 @@ import { KeyFilterModule } from 'primeng/keyfilter'
 import { ReactiveFormsModule } from '@angular/forms'
 import { AutoCompleteModule } from 'primeng/autocomplete'
 import { MessageService } from 'primeng/api'
+import { ConfirmDialogModule } from 'primeng/confirmdialog'
+import { ConfirmationService } from 'primeng/api'
 
 @NgModule({
     declarations: [
@@ -75,9 +77,13 @@ import { MessageService } from 'primeng/api'
         SelectButtonModule,
         ImageModule,
         KeyFilterModule,
-        AutoCompleteModule
+        AutoCompleteModule,
+        ConfirmDialogModule
     ],
-    providers: [MessageService],
+    providers: [
+        MessageService,
+        ConfirmationService
+    ],
     bootstrap: [AppComponent],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

@@ -4,15 +4,16 @@ import { ProductService } from '../services/product.service'
 import { capitalizeEachWord } from '../utils/utils'
 import { Product } from '../types/product.type'
 import { AutoCompleteCompleteEvent, Rating } from '../types/createAndEdit.type'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api'
 
 @Component({
     selector: 'app-product-edit',
     templateUrl: './product-edit.component.html',
     styleUrls: ['./product-edit.component.css']
 })
-export class ProductEditComponent implements OnInit{
-    product:Product = {
+export class ProductEditComponent implements OnInit {
+    product: Product = {
         name: '',
         description: '',
         price: 0,
@@ -29,7 +30,7 @@ export class ProductEditComponent implements OnInit{
         { name: '4 ⭐', value: 4 },
         { name: '5 ⭐', value: 5 },
     ]
-    ratingSelected!:Rating
+    ratingSelected!: Rating
 
     categories: string[] = []
     suggestionCategories: string[] = []
@@ -39,16 +40,19 @@ export class ProductEditComponent implements OnInit{
     imagePreviewUrl = ''
 
     constructor(
-      private productService: ProductService,
-      private route: ActivatedRoute
+        private productService: ProductService,
+        private route: ActivatedRoute,
+        private confirmationService: ConfirmationService,
+        private messageService: MessageService,
+        private router: Router
     ) { }
-  
+
     ngOnInit() {
         const productId = this.route.snapshot.paramMap.get('id')
         if (productId) {
             this.loadProduct(productId)
         }
-      
+
         this.productService.getCategories().subscribe({
             next: (response) => {
                 this.categories = response.data.map(category => capitalizeEachWord(category.name))
@@ -58,7 +62,7 @@ export class ProductEditComponent implements OnInit{
             }
         })
     }
-    loadProduct(productId:string){
+    loadProduct(productId: string) {
         this.productService.getProduct(productId).subscribe({
             next: (response) => {
                 this.product = response
@@ -95,19 +99,19 @@ export class ProductEditComponent implements OnInit{
 
         this.suggestionCategories = filtered
     }
-  
+
     addNewCategory(event: Event): void {
         const input = event.srcElement as any
         const newElement = input.value as string
-        const includeFilteredCategory = this.suggestionCategories.some(category => { 
-            if (category.toLowerCase() === newElement.toLowerCase()){
+        const includeFilteredCategory = this.suggestionCategories.some(category => {
+            if (category.toLowerCase() === newElement.toLowerCase()) {
                 return true
             }
             return false
 
         })
-        const includeCategories = this.selectedCategories.some(category => { 
-            if (category.toLowerCase() === newElement.toLowerCase()){
+        const includeCategories = this.selectedCategories.some(category => {
+            if (category.toLowerCase() === newElement.toLowerCase()) {
                 return true
             }
             return false
@@ -115,9 +119,9 @@ export class ProductEditComponent implements OnInit{
         })
 
         if (newElement !== '' &&
-      !this.categories.includes(newElement.toLowerCase()) &&
-      !includeCategories && 
-      !includeFilteredCategory) {
+            !this.categories.includes(newElement.toLowerCase()) &&
+            !includeCategories &&
+            !includeFilteredCategory) {
             this.selectedCategories.push(newElement)
             this.suggestionCategories = []
             input.value = ''
@@ -130,17 +134,53 @@ export class ProductEditComponent implements OnInit{
         this.showImagePreview = true
     }
 
-    onSubmit(): void {
+    editProduct(): void {
         const productToEdit = this.product
         if (this.ratingSelected) {
             productToEdit.rating = this.ratingSelected.value
         }
 
-        if (this.selectedCategories.length !== 0 ) {
-            productToEdit.tags = this.selectedCategories.map(category =>  category.toLowerCase())
+        if (this.selectedCategories.length !== 0) {
+            productToEdit.tags = this.selectedCategories.map(category => category.toLowerCase())
         }
 
         const productId = productToEdit._id ? productToEdit._id : ''
         this.productService.editProduct(productId, productToEdit)
+    }
+
+
+    deleteProduct() {
+        this.confirmationService.confirm({
+            header: 'Delete Confirmation',
+            message: 'Do you want to delete this product?',
+            icon: 'pi pi-trash',
+            accept: () => {
+                const productId = this.product._id ? this.product._id : ''
+                this.productService.deleteProduct(productId).subscribe({
+                    next: (response) => {
+                        console.log("Product deleted", response)
+                        this.messageService.add({ severity: 'success', summary: '¡Success!', detail: response.message })
+                        setTimeout(() => {
+                            this.router.navigate(['/products'])
+                        }, 2000)
+                    },
+                    error: (error) => {
+                        console.error('Error deleting product', error)
+                        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'There was an error deleting the product.' })
+                    }
+                })
+            },
+            reject: (type: ConfirmEventType) => {
+                switch (type) {
+                case ConfirmEventType.REJECT:
+                    this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Nothing Deleted' })
+                    break
+                case ConfirmEventType.CANCEL:
+                    this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'Cancel Delete' })
+                    break
+                }
+            },
+            key: 'confirmKey'
+        })
     }
 }

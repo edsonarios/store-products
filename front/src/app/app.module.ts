@@ -36,7 +36,7 @@ import { ImageModule } from 'primeng/image'
 import { KeyFilterModule } from 'primeng/keyfilter'
 import { ReactiveFormsModule } from '@angular/forms'
 import { AutoCompleteModule } from 'primeng/autocomplete'
-
+import { MessageService } from 'primeng/api'
 
 @NgModule({
     declarations: [
@@ -75,7 +75,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete'
         KeyFilterModule,
         AutoCompleteModule
     ],
-    providers: [],
+    providers: [MessageService],
     bootstrap: [AppComponent],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs'
 import { ListProduct, Product } from '../types/product.type'
 import { environment } from '../../environment'
 import { Categories, Category } from '../types/category.type'
+import { MessageService } from 'primeng/api'
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,10 @@ import { Categories, Category } from '../types/category.type'
 export class ProductService {
     private apiUrl = environment.url + '/api'
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private messageService: MessageService
+    ) { }
 
     getProducts(page: number = 1, limit: number = 5, name?: string, categories?:Category[], price?: string, rating?: number): Observable<ListProduct> {
         let url = `${this.apiUrl}/products?page=${page}&limit=${limit}`
@@ -41,9 +45,11 @@ export class ProductService {
         this.http.post<Product>(url, bodyNewProduct).subscribe({
             next: (response) => {
                 console.log("Produc created", response)
+                this.messageService.add({ severity: 'success', summary: '¡Success!', detail: 'Product create successfully.' })
             },
             error: (error) => {
                 console.error('Error creating new product', error)
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'There was an error creating the product.' })
             }
         })
     }

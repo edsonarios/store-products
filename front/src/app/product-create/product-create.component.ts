@@ -49,6 +49,7 @@ export class ProductCreateComponent implements OnInit{
     imagePreviewUrl = ''
 
     constructor(private productService: ProductService) { }
+    
     ngOnInit() {
         this.productService.getCategories().subscribe({
             next: (response) => {

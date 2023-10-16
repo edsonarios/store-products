@@ -3,12 +3,16 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities'; */
 @import 'primeng/resources/primeng.css';
-@import 'primeng/resources/themes/saga-purple/theme.css';
+/* @import 'primeng/resources/themes/saga-purple/theme.css'; */
+/* @import 'primeng/resources/themes/vela-green/theme.css'; */
+@import 'primeng/resources/themes/nova-alt/theme.css';
+/* @import 'primeng/resources/themes/soho-light/theme.css'; */
+/* @import 'primeng/resources/themes/nano/theme.css'; */
 @import 'primeicons/primeicons.css';
 @import 'primeflex/primeflex.css';
 
 body {
-    background-image: url('/assets/background.png');
+    background-image: url('/assets/greenbackground.jpg');
     overflow-x: hidden;
     margin: 0;
     padding: 0;

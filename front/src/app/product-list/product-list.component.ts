@@ -22,6 +22,8 @@ export class ProductListComponent implements OnInit {
     categories: Category[] = []
     selectedCategories: Category[] = []
 
+    price: string = ''
+
     value!: number
     
     paymentOptions: any[] = [
@@ -40,7 +42,7 @@ export class ProductListComponent implements OnInit {
     }
     
     loadProducts(): void {
-        this.productService.getProducts(this.page, this.limit, this.searchByName, this.selectedCategories).subscribe({
+        this.productService.getProducts(this.page, this.limit, this.searchByName, this.selectedCategories, this.price).subscribe({
             next: (response) => {
                 this.products = response.data
                 this.totalRecords = response.total
@@ -59,7 +61,6 @@ export class ProductListComponent implements OnInit {
     }
 
     searchProducts() {
-        console.log(this.selectedCategories)
         this.loadProducts()
     }
 

@@ -34,6 +34,7 @@ import { RadioButtonModule } from 'primeng/radiobutton'
 import { SelectButtonModule } from 'primeng/selectbutton'
 import { ImageModule } from 'primeng/image'
 import { KeyFilterModule } from 'primeng/keyfilter'
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import { KeyFilterModule } from 'primeng/keyfilter'
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        ReactiveFormsModule,
         AppRoutingModule,
         HttpClientModule,
         FormsModule,        

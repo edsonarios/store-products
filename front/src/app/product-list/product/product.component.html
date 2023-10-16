@@ -50,6 +50,14 @@
                     </div>
                     <div class="flex align-items-center justify-content-between">
                         <span class="text-2xl font-semibold">{{ '$' + product.price }}</span>
+                        <!-- edit button -->
+                        <button *ngIf="currentUser.isSuperUser" 
+                        pButton 
+                        pRipple 
+                        icon="pi pi-pencil" 
+                        class="p-button-rounded, edit-button" 
+                        [routerLink]="['/product-edit', product._id]"></button>
+                        <!-- add product to cart button -->
                         <button pButton pRipple icon="pi pi-shopping-cart" class="p-button-rounded"
                             [disabled]="product.stock === 0" severity="warning"></button>
                     </div>

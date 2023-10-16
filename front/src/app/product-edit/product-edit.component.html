@@ -1,0 +1,99 @@
+<app-header></app-header>
+<p-toast position="bottom-right"></p-toast>
+<div class="form-container mt-6 mb-6">
+    <div class="card-form">
+        <div class="title-container">
+            <h2 class="p-text-center text-white">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded edit-button"></button>
+                Edit Product
+            </h2>
+        </div>
+
+        <div class="p-fluid text-white">
+
+            <!-- Name -->
+            <div class="p-field">
+                <label for="name">Product Name</label>
+                <input id="name" type="text" pInputText [(ngModel)]="product.name" placeholder="Enter product name"
+                    class="mt-2" />
+            </div>
+
+            <!-- Description -->
+            <div class="p-field">
+                <textarea id="description" class="mt-4" [(ngModel)]="product.description" pInputTextarea
+                    autoResize="true" placeholder="Enter product description"></textarea>
+            </div>
+
+            <div class="p-field flex flex-row mt-4">
+                <!-- Price -->
+                <div class="col-6 p-field">
+                    <label for="price">Price</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">$</span>
+                        <input id="price" type="number" pInputText [(ngModel)]="product.price"
+                            placeholder="Enter product price" />
+                    </div>
+                </div>
+
+                <!-- Stock -->
+                <div class="col-6 p-field">
+                    <label for="stock">Stock</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">#</span>
+                        <input id="stock" type="number" pInputText [(ngModel)]="product.stock"
+                            placeholder="Enter Quantity Stock" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-field flex flex-row mt-2">
+                <!-- SKU -->
+                <div class="col-8 p-field">
+                    <label for="sku">SKU</label>
+                    <input id="sku" type="text" pInputText [(ngModel)]="product.sku"
+                        placeholder="Enter sku product" />
+                </div>
+
+                <!-- Rating -->
+                <div class="col-4 p-field">
+                    <label for="rating">Rating</label>
+                    <p-dropdown id="rating" [(ngModel)]="ratingSelected" [options]="ratings"
+                        optionLabel="name"></p-dropdown>
+                </div>
+
+            </div>
+
+            <!-- Category -->
+            <div class="p-field mt-4">
+                    <label for="rating">Categories</label>
+                    <p-autoComplete
+                    [(ngModel)]="selectedCategories"
+                    [dropdown]="true"
+                    [suggestions]="suggestionCategories" 
+                    (completeMethod)="filterCategoryForSuggestion($event)"
+                    [multiple]="true"
+                    (keyup.enter)="addNewCategory($event)"
+                    placeholder="Select or add a category"
+                    ></p-autoComplete>
+
+            </div>
+
+            <!-- Image -->
+            <div class="p-field mt-4">
+                <label for="imageUrl">Image URL</label>
+                <input id="imageUrl" type="text" [(ngModel)]="product.imageUrl" (input)="updateImagePreview()"
+                    pInputText placeholder="Image Url..." />
+            </div>
+
+            <!-- Vista previa de la imagen -->
+            <div class="p-field image-preview-container">
+                <img [src]="imagePreviewUrl" *ngIf="showImagePreview" alt="Image preview" class="image-preview">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="p-field mt-4 ">
+                <p-button type="button" label="Edit Product" severity="warning" (onClick)="onSubmit()"></p-button>
+            </div>
+        </div>
+    </div>
+</div>

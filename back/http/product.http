@@ -15,7 +15,7 @@ GET {{URL}}?page=2&limit=5&price=10
 GET {{URL}}?page=2&limit=5&rating=4,5
 
 ### get product by id
-GET {{URL}}/getById/652844275a1562b53bdcd40a
+GET {{URL}}/getById/65289ef920a9104af578e263
 
 ### POST products
 POST {{URL}}

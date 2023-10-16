@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Product } from 'src/app/types/product.type'
+import { environment } from 'src/environment'
 
 @Component({
     selector: 'app-product',
@@ -8,6 +9,10 @@ import { Product } from 'src/app/types/product.type'
     styleUrls: ['./product.component.css']
 })
 export class ProductComponent{
+    currentUser = {
+        isSuperUser: environment.isSuperUser
+    }
+      
     @Input() products: Product[] = []
     @Input() totalRecords: number = 0
     @Output() pageChange: EventEmitter<any> = new EventEmitter<any>()

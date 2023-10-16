@@ -21,3 +21,14 @@
 .product-image:hover {
   transform: scale(1.2);
 }
+
+.edit-button {
+  border-radius: 50%;
+  background-color: #f59e0c;
+  border-color: #d48907;
+}
+
+.edit-button:hover {
+  background-color: #d97706;
+  color: white;
+}

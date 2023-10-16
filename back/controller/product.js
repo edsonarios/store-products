@@ -101,6 +101,12 @@ exports.updateProduct = async (req, res, next) => {
             product.stock = req.body.stock
         }
 
+        Object.keys(req.body).forEach(key => {
+            if (key !== 'price' && key !== 'stock') {
+                product[key] = req.body[key]
+            }
+        })
+
         await product.save()
         res.status(200).json(product)
     } catch (err) {

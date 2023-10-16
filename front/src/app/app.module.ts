@@ -13,6 +13,7 @@ import { ProductComponent } from './product-list/product/product.component'
 
 import { ProductDetailComponent } from './product-detail/product-detail.component'
 import { ProductCreateComponent } from './product-create/product-create.component'
+import { ProductEditComponent } from './product-edit/product-edit.component'
 import { HomeComponent } from './home/home.component'
 import { HeaderComponent } from './header/header.component'
 import { HttpClientModule } from '@angular/common/http'
@@ -47,7 +48,8 @@ import { MessageService } from 'primeng/api'
         ProductDetailComponent,
         ProductCreateComponent,
         HomeComponent,
-        HeaderComponent
+        HeaderComponent,
+        ProductEditComponent
     ],
     imports: [
         BrowserModule,

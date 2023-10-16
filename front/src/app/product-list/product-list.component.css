@@ -19,3 +19,10 @@
   min-width: 10rem;
   max-width: 10rem;
 }
+
+.create-product-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
+}

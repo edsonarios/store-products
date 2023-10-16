@@ -1,1 +1,93 @@
-<p>product-create works!</p>
+<app-header></app-header>
+
+<div class="form-container mt-8">
+    <div class="card-form">
+        <h2 class="p-text-center text-white">Create New Product</h2>
+
+        <div class="p-fluid text-white">
+
+            <!-- Name -->
+            <div class="p-field">
+                <label for="name">Product Name</label>
+                <input id="name" type="text" pInputText [(ngModel)]="product.name" placeholder="Enter product name"
+                    class="mt-2" />
+            </div>
+
+            <!-- Description -->
+            <div class="p-field">
+                <textarea id="description" class="mt-4" [(ngModel)]="product.description" pInputTextarea
+                    autoResize="true" placeholder="Enter product description"></textarea>
+            </div>
+
+            <div class="p-field flex flex-row mt-4">
+                <!-- Price -->
+                <div class="col-6 p-field">
+                    <label for="price">Price</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">$</span>
+                        <input id="price" type="text" pInputText [(ngModel)]="product.price" type="number"
+                            placeholder="Enter product price" />
+                    </div>
+                </div>
+
+                <!-- Stock -->
+                <div class="col-6 p-field">
+                    <label for="price">Stock</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">$</span>
+                        <input id="price" type="text" pInputText [(ngModel)]="product.price" type="number"
+                            placeholder="Enter Quantity Stock" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-field flex flex-row mt-2">
+                <!-- Rating -->
+                <div class="col-6 p-field">
+                    <label for="rating">Rating</label>
+                    <p-dropdown id="rating" [(ngModel)]="product.rating" [options]="ratings"
+                        optionLabel="name"></p-dropdown>
+                </div>
+
+                <!-- SKU -->
+                <div class="col-6 p-field">
+                    <label for="name">SKU</label>
+                    <input id="name" type="text" pInputText [(ngModel)]="product.name" placeholder="Enter product name"
+                        class="" />
+                </div>
+            </div>
+
+            <!-- Category -->
+            <div class="p-field mt-4">
+                <label for="category">Category</label>
+                <p-dropdown id="category" [(ngModel)]="product.category" [options]="categories"
+                    optionLabel="name"></p-dropdown>
+            </div>
+
+            <!-- Image -->
+            <div class="p-field mt-4">
+                <label for="name">Image URL</label>
+                <input id="name" type="text" pInputText [(ngModel)]="product.name" placeholder="Image Url..."
+                    class="mt-2" />
+            </div>
+
+
+
+            <div class="p-field">
+                <label for="imageUrl">Image URL</label>
+                <input id="imageUrl" type="text" [(ngModel)]="product.imageUrl" (input)="updateImagePreview()"
+                    pInputText />
+            </div>
+
+            <!-- Vista previa de la imagen -->
+            <div class="p-field">
+                <img [src]="imagePreviewUrl" *ngIf="showImagePreview" alt="Image preview" width="200">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="p-field mt-4">
+                <p-button type="button" label="Create New Product" (onClick)="onSubmit()"></p-button>
+            </div>
+        </div>
+    </div>
+</div>

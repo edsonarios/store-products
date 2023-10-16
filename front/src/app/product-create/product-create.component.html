@@ -1,8 +1,13 @@
 <app-header></app-header>
 
-<div class="form-container mt-8">
+<div class="form-container mt-6 mb-6">
     <div class="card-form">
-        <h2 class="p-text-center text-white">Create New Product</h2>
+        <div class="title-container">
+            <h2 class="p-text-center text-white">
+                <p-button icon="pi pi-plus" [rounded]="true"></p-button>
+                Create New Product
+            </h2>
+        </div>
 
         <div class="p-fluid text-white">
 
@@ -25,67 +30,69 @@
                     <label for="price">Price</label>
                     <div class="p-inputgroup">
                         <span class="p-inputgroup-addon">$</span>
-                        <input id="price" type="text" pInputText [(ngModel)]="product.price" type="number"
+                        <input id="price" type="number" pInputText [(ngModel)]="product.price"
                             placeholder="Enter product price" />
                     </div>
                 </div>
 
                 <!-- Stock -->
                 <div class="col-6 p-field">
-                    <label for="price">Stock</label>
+                    <label for="stock">Stock</label>
                     <div class="p-inputgroup">
-                        <span class="p-inputgroup-addon">$</span>
-                        <input id="price" type="text" pInputText [(ngModel)]="product.price" type="number"
+                        <span class="p-inputgroup-addon">#</span>
+                        <input id="stock" type="number" pInputText [(ngModel)]="product.stock"
                             placeholder="Enter Quantity Stock" />
                     </div>
                 </div>
             </div>
 
             <div class="p-field flex flex-row mt-2">
+                <!-- SKU -->
+                <div class="col-8 p-field">
+                    <label for="name">SKU</label>
+                    <input id="name" type="text" pInputText [(ngModel)]="product.name"
+                        placeholder="Enter sku product" />
+                </div>
+
                 <!-- Rating -->
-                <div class="col-6 p-field">
+                <div class="col-4 p-field">
                     <label for="rating">Rating</label>
                     <p-dropdown id="rating" [(ngModel)]="product.rating" [options]="ratings"
                         optionLabel="name"></p-dropdown>
                 </div>
 
-                <!-- SKU -->
-                <div class="col-6 p-field">
-                    <label for="name">SKU</label>
-                    <input id="name" type="text" pInputText [(ngModel)]="product.name" placeholder="Enter product name"
-                        class="" />
-                </div>
             </div>
 
             <!-- Category -->
             <div class="p-field mt-4">
-                <label for="category">Category</label>
-                <p-dropdown id="category" [(ngModel)]="product.category" [options]="categories"
-                    optionLabel="name"></p-dropdown>
+                
+                    <label for="rating">Categories</label>
+                    <p-autoComplete #autoCompleteInput
+                    [(ngModel)]="selectedCategory"
+                    [dropdown]="true"
+                    [suggestions]="filteredCategories" 
+                    (completeMethod)="filterCategory($event)"
+                    [multiple]="true"
+                    placeholder="Select or add a category"
+                    (keyup.enter)="addNewCategory($event)"
+                    ></p-autoComplete>
+
             </div>
 
             <!-- Image -->
             <div class="p-field mt-4">
-                <label for="name">Image URL</label>
-                <input id="name" type="text" pInputText [(ngModel)]="product.name" placeholder="Image Url..."
-                    class="mt-2" />
-            </div>
-
-
-
-            <div class="p-field">
                 <label for="imageUrl">Image URL</label>
                 <input id="imageUrl" type="text" [(ngModel)]="product.imageUrl" (input)="updateImagePreview()"
-                    pInputText />
+                    pInputText placeholder="Image Url..." />
             </div>
 
             <!-- Vista previa de la imagen -->
-            <div class="p-field">
-                <img [src]="imagePreviewUrl" *ngIf="showImagePreview" alt="Image preview" width="200">
+            <div class="p-field image-preview-container">
+                <img [src]="imagePreviewUrl" *ngIf="showImagePreview" alt="Image preview" class="image-preview">
             </div>
 
             <!-- Submit Button -->
-            <div class="p-field mt-4">
+            <div class="p-field mt-4 ">
                 <p-button type="button" label="Create New Product" (onClick)="onSubmit()"></p-button>
             </div>
         </div>

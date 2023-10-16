@@ -35,6 +35,8 @@ import { SelectButtonModule } from 'primeng/selectbutton'
 import { ImageModule } from 'primeng/image'
 import { KeyFilterModule } from 'primeng/keyfilter'
 import { ReactiveFormsModule } from '@angular/forms'
+import { AutoCompleteModule } from 'primeng/autocomplete'
+
 
 @NgModule({
     declarations: [
@@ -70,7 +72,8 @@ import { ReactiveFormsModule } from '@angular/forms'
         RadioButtonModule,
         SelectButtonModule,
         ImageModule,
-        KeyFilterModule
+        KeyFilterModule,
+        AutoCompleteModule
     ],
     providers: [],
     bootstrap: [AppComponent],

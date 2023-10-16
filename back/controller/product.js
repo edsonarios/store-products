@@ -22,7 +22,6 @@ exports.getProducts = async (req, res, next) => {
         const limit = parseInt(req.query.limit) || 10
         const nameFilter = req.query.name || ''
         const priceFilter = parseFloat(req.query.price) || null
-        // const ratingFilter = parseInt(req.query.rating) || null
         let ratings = req.query.rating
         if (typeof ratings === 'string') {
             ratings = ratings.split(',')
@@ -36,7 +35,6 @@ exports.getProducts = async (req, res, next) => {
         const filter = {}
         if (nameFilter) filter.name = new RegExp(nameFilter, 'i')
         if (priceFilter) filter.price = { $lte: priceFilter }
-        // if (ratingFilter) filter.rating = { $gte: ratingFilter }
         if (ratings && ratings.length > 0) {
             filter.rating = { $in: ratings }
         }

@@ -2,7 +2,7 @@
 <div class="primeng-container">
     <div class="grid">
         <!-- Search -->
-        <div class="col-5">
+        <div class="col-4">
             <div class="p-inputgroup mt-4 mb-4 ml-4 ">
                 <input type="text" pInputText placeholder="All Products..." class="w-4 search-field"
                     [(ngModel)]="searchByName" (keyup.enter)="searchProducts()" />
@@ -10,26 +10,25 @@
                     (click)="searchProducts()"></button>
             </div>
         </div>
-        <div class="col-7 card flex">
+        <div class="col-8 card flex">
             <!-- Categories -->
             <div class="card flex justify-content-center mt-4 ml-4 ">
                 <p-multiSelect [options]="categories" [(ngModel)]="selectedCategories" optionLabel="name" defaultLabel="All Categories"></p-multiSelect>
             </div>
             <!-- Rating -->
             <div class="card flex flex-column md:flex-row gap-3 ml-4">
-                <p class="mt-5 font-bold text-white">Choise Rating:
+                <p class="mt-5 font-bold text-white">Filter By Rating:
                 </p>
-                <p-selectButton [options]="paymentOptions" [(ngModel)]="value" [multiple]="true" styleClass="success"
+                <p-selectButton [options]="ratingOptions" [(ngModel)]="ratingSelected" [multiple]="true"
                     optionLabel="name" optionValue="value" class="mt-4"></p-selectButton>
             </div>
             <!-- Price -->
             <div class="card flex flex-column md:flex-row gap-3">
                 <div class="p-inputgroup w-8 ml-4 mt-4 mb-4">
                     <span class="p-inputgroup-addon">$</span>
-                    <input pInputText type="number" placeholder="Price" [(ngModel)]="price"/>
+                    <input pInputText type="number" placeholder="Filter By Price" [(ngModel)]="price"/>
                 </div>
             </div>
-
             
         </div>
     </div>

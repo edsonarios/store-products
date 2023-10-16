@@ -12,7 +12,7 @@ import { Category } from '../types/category.type'
 
 export class ProductListComponent implements OnInit {
     products: Product[] = []
-    layout: 'list' | 'grid' = 'grid'
+
     totalRecords: number = 0
     page: number = 1
     limit: number = 5
@@ -24,14 +24,13 @@ export class ProductListComponent implements OnInit {
 
     price: string = ''
 
-    value!: number
-    
-    paymentOptions: any[] = [
-        { name: '⭐', value: 1 },
-        { name: '⭐', value: 2 },
-        { name: '⭐', value: 3 },
-        { name: '⭐', value: 4 },
-        { name: '⭐', value: 5 }
+    ratingSelected!: number
+    ratingOptions: any[] = [
+        { name: '1 ⭐', value: 1 },
+        { name: '2 ⭐', value: 2 },
+        { name: '3 ⭐', value: 3 },
+        { name: '4 ⭐', value: 4 },
+        { name: '5 ⭐', value: 5 }
     ]
 
     constructor(private productService: ProductService) { }
@@ -42,7 +41,7 @@ export class ProductListComponent implements OnInit {
     }
     
     loadProducts(): void {
-        this.productService.getProducts(this.page, this.limit, this.searchByName, this.selectedCategories, this.price).subscribe({
+        this.productService.getProducts(this.page, this.limit, this.searchByName, this.selectedCategories, this.price, this.ratingSelected).subscribe({
             next: (response) => {
                 this.products = response.data
                 this.totalRecords = response.total

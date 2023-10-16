@@ -55,3 +55,10 @@
   background-color: #d97706;
   color: white;
 }
+
+.products-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
+}

@@ -7,7 +7,7 @@ export interface ListProduct {
 }
 
 export interface Product {
-    _id: string
+    _id?: string
     name: string
     description: string
     sku: string
@@ -15,8 +15,8 @@ export interface Product {
     tags: string[]
     price: number
     stock: number
-    priceHistory: PriceHistory[]
-    stockHistory: StockHistory[]
+    priceHistory?: PriceHistory[]
+    stockHistory?: StockHistory[]
     __v?: number
     rating?:number
     inventoryStatus?:string

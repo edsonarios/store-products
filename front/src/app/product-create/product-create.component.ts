@@ -1,43 +1,66 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core'
+import { ProductService } from '../services/product.service'
+import { capitalizeEachWord } from '../utils/utils'
+import { Product } from '../types/product.type'
+
 interface AutoCompleteCompleteEvent {
     originalEvent: Event;
     query: string;
 }
+
+interface Rating {
+    name: string,
+    value: number
+}
+
 @Component({
     selector: 'app-product-create',
     templateUrl: './product-create.component.html',
     styleUrls: ['./product-create.component.css']
 })
+
 export class ProductCreateComponent implements OnInit{
-    product = {
+    product:Product = {
         name: '',
         description: '',
-        price: '',
-        stock: '',
-        rating: null,
+        price: 0,
+        stock: 0,
+        rating: 0,
         sku: '',
-        category: null,
+        tags: [],
         imageUrl: ''
     }
 
-    ratings = [
+    ratings: Rating[] = [
         { name: '1 ⭐', value: 1 },
         { name: '2 ⭐', value: 2 },
         { name: '3 ⭐', value: 3 },
         { name: '4 ⭐', value: 4 },
         { name: '5 ⭐', value: 5 },
     ]
+    ratingSelected!:Rating
 
     categories: string[] = []
-    filteredCategories: string[] = []
+    suggestionCategories: string[] = []
     selectedCategories: string[] = []
-    selectedCategory: string[] = []
+
+    showImagePreview = false
+    imagePreviewUrl = ''
+
+    constructor(private productService: ProductService) { }
     ngOnInit() {
-        this.categories = ["Electronics", "Clothing", "Toys", "Books", "Book"]
+        this.productService.getCategories().subscribe({
+            next: (response) => {
+                this.categories = response.data.map(category => capitalizeEachWord(category.name))
+            },
+            error: (error) => {
+                console.error('Error fetching categories', error)
+            }
+        })
     }
 
-    filterCategory(event: AutoCompleteCompleteEvent) {
+    filterCategoryForSuggestion(event: AutoCompleteCompleteEvent) {
         const filtered: string[] = []
         const query = event.query
 
@@ -48,42 +71,54 @@ export class ProductCreateComponent implements OnInit{
             }
         }
 
-        this.filteredCategories = filtered
+        this.suggestionCategories = filtered
     }
     
     addNewCategory(event: Event): void {
         const input = event.srcElement as any
         const newElement = input.value as string
-        const includeFilteredCategory = this.filteredCategories.some(category => { 
+        const includeFilteredCategory = this.suggestionCategories.some(category => { 
             if (category.toLowerCase() === newElement.toLowerCase()){
                 return true
             }
             return false
 
         })
-        
+        const includeCategories = this.selectedCategories.some(category => { 
+            if (category.toLowerCase() === newElement.toLowerCase()){
+                return true
+            }
+            return false
+
+        })
+
         if (newElement !== '' &&
         !this.categories.includes(newElement.toLowerCase()) &&
-        !this.selectedCategory.includes(newElement.toLowerCase()) && 
+        !includeCategories && 
         !includeFilteredCategory) {
-            this.selectedCategory.push(newElement)
-            this.filteredCategories = []
+            this.selectedCategories.push(newElement)
+            this.suggestionCategories = []
             input.value = ''
         }
+        console.log(this.selectedCategories)
     }
-    constructor() { }
-
-
-
-    onSubmit(): void {
-        console.log(this.product)
-    }
-
-    showImagePreview = false
-    imagePreviewUrl = ''
 
     updateImagePreview() {
         this.imagePreviewUrl = this.product.imageUrl
         this.showImagePreview = true
+    }
+
+    onSubmit(): void {
+        const productToCreate = this.product
+        if (this.ratingSelected) {
+            productToCreate.rating = this.ratingSelected.value
+        }
+
+        if (this.selectedCategories.length !== 0 ) {
+            productToCreate.tags = this.selectedCategories.map(category =>  category.toLowerCase())
+        }
+
+        console.log(productToCreate)
+        this.productService.createNewProduct(productToCreate)
     }
 }

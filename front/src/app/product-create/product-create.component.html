@@ -49,15 +49,15 @@
             <div class="p-field flex flex-row mt-2">
                 <!-- SKU -->
                 <div class="col-8 p-field">
-                    <label for="name">SKU</label>
-                    <input id="name" type="text" pInputText [(ngModel)]="product.name"
+                    <label for="sku">SKU</label>
+                    <input id="sku" type="text" pInputText [(ngModel)]="product.sku"
                         placeholder="Enter sku product" />
                 </div>
 
                 <!-- Rating -->
                 <div class="col-4 p-field">
                     <label for="rating">Rating</label>
-                    <p-dropdown id="rating" [(ngModel)]="product.rating" [options]="ratings"
+                    <p-dropdown id="rating" [(ngModel)]="ratingSelected" [options]="ratings"
                         optionLabel="name"></p-dropdown>
                 </div>
 
@@ -65,16 +65,15 @@
 
             <!-- Category -->
             <div class="p-field mt-4">
-                
                     <label for="rating">Categories</label>
-                    <p-autoComplete #autoCompleteInput
-                    [(ngModel)]="selectedCategory"
+                    <p-autoComplete
+                    [(ngModel)]="selectedCategories"
                     [dropdown]="true"
-                    [suggestions]="filteredCategories" 
-                    (completeMethod)="filterCategory($event)"
+                    [suggestions]="suggestionCategories" 
+                    (completeMethod)="filterCategoryForSuggestion($event)"
                     [multiple]="true"
-                    placeholder="Select or add a category"
                     (keyup.enter)="addNewCategory($event)"
+                    placeholder="Select or add a category"
                     ></p-autoComplete>
 
             </div>

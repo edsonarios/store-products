@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
-import { ListProduct } from '../types/product.type'
+import { ListProduct, Product } from '../types/product.type'
 import { environment } from '../../environment'
 import { Categories, Category } from '../types/category.type'
 
@@ -34,5 +34,17 @@ export class ProductService {
     getCategories(): Observable<Categories> {
         const  url = `${this.apiUrl}/products/tags`
         return this.http.get<Categories>(url)
+    }
+    
+    createNewProduct(bodyNewProduct: Product){
+        const url =  `${this.apiUrl}/products/`
+        this.http.post<Product>(url, bodyNewProduct).subscribe({
+            next: (response) => {
+                console.log("Produc created", response)
+            },
+            error: (error) => {
+                console.error('Error creating new product', error)
+            }
+        })
     }
 }

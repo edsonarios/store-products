@@ -78,7 +78,7 @@
 </div>
 <!-- Preview Image -->
 <div class="card flex justify-content-center">
-    <p-dialog header="{{ selectedProduct?.name }}" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
+    <p-dialog header="{{ selectedProduct.name }}" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
         [draggable]="false" [resizable]="false" [dismissableMask]="true">
         <ng-container *ngIf="selectedProduct">
             <div class="flex flex-column md:flex-row justify-content-between gap-4">

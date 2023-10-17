@@ -40,6 +40,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete'
 import { MessageService } from 'primeng/api'
 import { ConfirmDialogModule } from 'primeng/confirmdialog'
 import { ConfirmationService } from 'primeng/api'
+import { SidebarModule } from 'primeng/sidebar'
+import { DialogModule } from 'primeng/dialog'
 
 @NgModule({
     declarations: [
@@ -78,7 +80,9 @@ import { ConfirmationService } from 'primeng/api'
         ImageModule,
         KeyFilterModule,
         AutoCompleteModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        SidebarModule,
+        DialogModule
     ],
     providers: [
         MessageService,

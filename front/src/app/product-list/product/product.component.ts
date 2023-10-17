@@ -40,4 +40,12 @@ export class ProductComponent{
     onPageChange(event: any): void {
         this.pageChange.emit(event)
     }
+
+    selectedProduct!: Product
+    visible: boolean = false
+        
+    showPreview(product: Product) {
+        this.selectedProduct = product
+        this.visible = true
+    }
 }

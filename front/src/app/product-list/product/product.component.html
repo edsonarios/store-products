@@ -5,11 +5,12 @@
                 <p-dataViewLayoutOptions [layout]="layout"></p-dataViewLayoutOptions>
             </div>
         </ng-template>
+        <!-- List Items -->
         <ng-template let-product pTemplate="listItem">
             <div class="col-12">
                 <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 product-card">
                     <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round product-image"
-                        [src]="product.imageUrl" [alt]="product.name" />
+                        [src]="product.imageUrl" [alt]="product.name" (click)="showPreview(product)" />
                     <div
                         class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
                         <div class="flex flex-column align-items-center sm:align-items-start gap-3">
@@ -25,13 +26,19 @@
                         </div>
                         <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
                             <span class="text-2xl font-semibold">{{ '$' + product.price }}</span>
+                            <!-- add product to cart button -->
                             <button pButton icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded"
                                 [disabled]="product.stock === 0"></button>
+                            <!-- edit button -->
+                            <button *ngIf="currentUser.isSuperUser" pButton pRipple icon="pi pi-pencil"
+                                class="p-button-rounded, edit-button"
+                                [routerLink]="['/product-edit', product._id]"></button>
                         </div>
                     </div>
                 </div>
             </div>
         </ng-template>
+        <!-- Grid Items -->
         <ng-template let-product pTemplate="gridItem">
             <div class="col-12 sm:col-6 lg:col-12 xl:col-4 p-2">
                 <div class="p-4 border-1 surface-border surface-card border-round product-card">
@@ -44,19 +51,17 @@
                     </div>
                     <div class="flex flex-column align-items-center gap-3 py-5">
                         <img class="w-9 shadow-2 border-round product-image" [src]="product.imageUrl"
-                            [alt]="product.name" />
+                            [alt]="product.name" (click)="showPreview(product)" />
                         <div class="text-2xl font-bold">{{ product.name }}</div>
                         <p-rating [ngModel]="product.rating" [readonly]="false" [cancel]="false"></p-rating>
                     </div>
                     <div class="flex align-items-center justify-content-between">
                         <span class="text-2xl font-semibold">{{ '$' + product.price }}</span>
                         <!-- edit button -->
-                        <button *ngIf="currentUser.isSuperUser" 
-                        pButton 
-                        pRipple 
-                        icon="pi pi-pencil" 
-                        class="p-button-rounded, edit-button" 
-                        [routerLink]="['/product-edit', product._id]"></button>
+                        <button *ngIf="currentUser.isSuperUser" pButton pRipple icon="pi pi-pencil"
+                            class="p-button-rounded, edit-button"
+                            [routerLink]="['/product-edit', product._id]"></button>
+
                         <!-- add product to cart button -->
                         <button pButton pRipple icon="pi pi-shopping-cart" class="p-button-rounded"
                             [disabled]="product.stock === 0" severity="warning"></button>
@@ -65,8 +70,49 @@
             </div>
         </ng-template>
     </p-dataView>
+    <!-- Pagination -->
     <div class="card flex justify-content-center mt-2 mb-4">
         <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="limit" [totalRecords]="totalRecords"
             [rowsPerPageOptions]="[5, 10, 20]"></p-paginator>
     </div>
+</div>
+<!-- Preview Image -->
+<div class="card flex justify-content-center">
+    <p-dialog header="{{ selectedProduct?.name }}" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
+        [draggable]="false" [resizable]="false" [dismissableMask]="true">
+        <ng-container *ngIf="selectedProduct">
+            <div class="flex flex-column md:flex-row justify-content-between gap-4">
+                <!-- Producto Imagen -->
+                <div class="flex justify-content-center image-container">
+                    <img [src]="selectedProduct.imageUrl" class="product-image-lg" alt="{{selectedProduct.name}}" />
+                </div>
+
+                <!-- Details Product -->
+                <div class="flex flex-column gap-3">
+                    <h2>{{ selectedProduct.name }}</h2>
+                    <p>{{ selectedProduct.description }}</p>
+                    <div>
+                        <i class="pi pi-tag"></i>
+                        <span class="font-semibold">{{ selectedProduct.tags.join(', ') }}</span>
+                    </div>
+                    <div class="flex flex-row">
+                        <p-tag [value]="getStockTitle(selectedProduct)" [severity]="getSeverity(selectedProduct)"
+                            class="mt-1"></p-tag>
+                        <span class="text-2xl font-bold ml-4">{{ 'Available: ' + selectedProduct.stock }}</span>
+
+                    </div>
+                    <p-rating [ngModel]="selectedProduct.rating" [readonly]="true" [cancel]="false"></p-rating>
+                    <div class="flex justify-content-between align-items-center mt-4">
+                        <span class="text-2xl font-bold">{{ '$' + selectedProduct.price }}</span>
+                        <button *ngIf="currentUser.isSuperUser" pButton pRipple icon="pi pi-pencil"
+                            class="p-button-rounded, edit-button"
+                            [routerLink]="['/product-edit', selectedProduct._id]"></button>
+                        <button pButton icon="pi pi-shopping-cart" class="p-button-rounded"
+                            [disabled]="selectedProduct.stock === 0"></button>
+
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </p-dialog>
 </div>

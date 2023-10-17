@@ -12,6 +12,7 @@ import { Category } from '../types/category.type'
 
 export class ProductListComponent implements OnInit {
     products: Product[] = []
+    cartProducts: Product[] = []
 
     totalRecords: number = 0
     page: number = 1
@@ -39,7 +40,7 @@ export class ProductListComponent implements OnInit {
         this.loadProducts()
         this.loadCategories()
     }
-    
+
     loadProducts(): void {
         this.productService.getProducts(this.page, this.limit, this.searchByName, this.selectedCategories, this.price, this.ratingSelected).subscribe({
             next: (response) => {
@@ -52,7 +53,7 @@ export class ProductListComponent implements OnInit {
             }
         })
     }
-    
+
     handlePageChange(event: any): void {
         this.page = event.page + 1
         this.limit = event.rows
@@ -72,5 +73,10 @@ export class ProductListComponent implements OnInit {
                 console.error('Error fetching categories', error)
             }
         })
+    }
+
+    handleProductAdded(product: Product): void {
+        this.cartProducts = [...this.cartProducts, product]
+        console.log('from product-list', this.cartProducts)
     }
 }

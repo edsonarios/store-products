@@ -29,7 +29,7 @@ export class ProductService {
         if (price) {
             url += `&price=${parseInt(price)}`
         }
-        if (rating) {
+        if (rating && rating.toString() !== '') {
             url += `&rating=${rating.toString()}`
         }
         console.log(url)
@@ -43,7 +43,6 @@ export class ProductService {
 
     getProduct(id: string): Observable<Product> {
         const url = `${this.apiUrl}/getById/${id}`
-        console.log(url)
         return this.http.get<Product>(url)
     }
 
@@ -63,7 +62,6 @@ export class ProductService {
 
     editProduct(productId: string, bodyNewProduct: Product) {
         const url = `${this.apiUrl}/${productId}`
-        console.log(url)
         this.http.put<Product>(url, bodyNewProduct).subscribe({
             next: (response) => {
                 console.log("Product edited", response)

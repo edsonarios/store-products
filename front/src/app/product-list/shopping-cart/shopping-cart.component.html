@@ -1,22 +1,34 @@
 <div class="card xl:flex xl:justify-content-center w-full">
-    <p-orderList [value]="products" [listStyle]="{ 'max-height': '40rem' }" header="Shopping Cart" [dragdrop]="true">
+    <p-orderList [value]="products" [listStyle]="{ 'min-height': '56rem', 'max-height': '56rem' }"
+        header="Shopping Cart" [dragdrop]="true" class="w-full">
         <ng-template pTemplate="header">
             <div class="centered-header">
-                <i class="pi pi-shopping-cart p-mr-2 mr-3"></i>
+                <i class="pi pi-shopping-cart p-mr-2 mr-3" pBadge value="{{products.length}}"
+                    style="font-size: 2rem"></i>
                 <span>Shopping Cart</span>
             </div>
+            <span class="centered-header mt-2" *ngIf="!products || products.length === 0">Empty Cart</span>
+            <span class="centered-header mt-2" *ngIf="products && products.length > 0">Total Cost: ${{totalCost |
+                number:'1.2-2'}}</span>
+
         </ng-template>
+
         <ng-template let-product pTemplate="item">
-            <div class="flex flex-wrap p-2 align-items-center gap-3">
-                <img [src]="product.imageUrl" [alt]="product.name" class="w-4rem shadow-2 flex-shrink-0 border-round" />
-                <div class="flex-1 flex flex-column gap-2">
-                    <span class="font-bold">{{ product.name }}</span>
-                    <div class="flex align-items-center gap-2">
-                        <i class="pi pi-tag text-sm"></i>
-                        <span>{{ product.tags.join(', ') }}</span>
+            <div class="product-item">
+                <!-- Image -->
+                <div class="product-image-container">
+                    <img [src]="product.imageUrl" [alt]="product.name" class="product-image" />
+                </div>
+                <!-- Title and price -->
+                <div class="product-details">
+                    <span class="font-bold">{{ truncateTitle(product.name) }}</span>
+                    <div class="actions mt-1">
+                        <span class="font-bold text-900">{{ '$' + product.price }}</span>
+                        <button pButton type="button" icon="pi pi-trash"
+                            class="p-button-rounded p-button-danger p-button-outlined delete-btn"
+                            (click)="removeProduct(product)"></button>
                     </div>
                 </div>
-                <span class="font-bold text-900">{{ '$' + product.price }}</span>
             </div>
         </ng-template>
     </p-orderList>

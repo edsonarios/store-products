@@ -8,18 +8,20 @@ import { environment } from 'src/environment'
     templateUrl: './product.component.html',
     styleUrls: ['./product.component.css']
 })
-export class ProductComponent{
+export class ProductComponent {
     currentUser = {
         isSuperUser: environment.isSuperUser
     }
-      
+
+    @Output() productAdded = new EventEmitter<Product>()
     @Input() products: Product[] = []
     @Input() totalRecords: number = 0
     @Output() pageChange: EventEmitter<any> = new EventEmitter<any>()
     @Input() first: number = 0
     @Input() limit: number = 0
     layout: 'list' | 'grid' = 'grid'
-
+    selectedProduct!: Product
+    visible: boolean = false
 
     getStockTitle(product: Product) {
         const stock = product.stock
@@ -41,11 +43,12 @@ export class ProductComponent{
         this.pageChange.emit(event)
     }
 
-    selectedProduct!: Product
-    visible: boolean = false
-        
     showPreview(product: Product) {
         this.selectedProduct = product
         this.visible = true
+    }
+
+    addToCart(product: Product): void {
+        this.productAdded.emit(product)
     }
 }

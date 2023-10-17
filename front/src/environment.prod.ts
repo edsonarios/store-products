@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    url: 'https://prod-api.com'
+    url: 'https://api-k0et.onrender.com',
+    isSuperUser: true
 }
-  

@@ -14,6 +14,10 @@ app.use(logger('dev'))
 app.use('/api/products', productRoutes)
 app.use(errorHandler)
 
+app.get('/', async (req, res) => {
+    res.send('API Works')
+})
+
 app.listen(PORT, () => {
     console.log(`Server started on http://localhost:${PORT}`)
 })

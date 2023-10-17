@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const URI = 'mongodb://localhost:27017/products'
+const URI = process.env.MONDO_DB_UI || 'mongodb://localhost:27017/products'
 
 mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
 

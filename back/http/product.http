@@ -1,12 +1,13 @@
+# @URL=https://api-k0et.onrender.com/api/products
 @URL=http://localhost:3000/api/products
 
 ### GET all products
 GET {{URL}}
 ### GET products with pagination
-GET {{URL}}?page=1&limit=100
+GET {{URL}}?page=1&limit=10
 
 ### GET products by filters category
-GET {{URL}}?page=2&limit=5&category=jacket,outdoor
+GET {{URL}}?page=1&limit=5&category=jacket,outdoor
 
 ### GET products by filter price
 GET {{URL}}?page=2&limit=5&price=10
@@ -15,10 +16,31 @@ GET {{URL}}?page=2&limit=5&price=10
 GET {{URL}}?page=2&limit=5&rating=4,5
 
 ### get product by id
-GET {{URL}}/getById/65289ef920a9104af578e263
+GET {{URL}}/getById/652e8be49768afd0d6318eb0
 
 ### POST create new product
 POST {{URL}}
+content-type: application/json
+
+{
+    "name": "WD 2TB Elements Portable External Hard Drive - USB 3.0",
+    "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
+    "sku": "9",
+    "imageUrl": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
+    "tags": ["electronics", "hard drive", "usb 3.0", "external"],
+    "price": 64,
+    "stock": 203,
+    "priceHistory": [
+    ],
+    "stockHistory": [
+    ],
+    "rating": 2
+}
+
+
+
+### Edit product
+PUT {{URL}}/652e07197f309ef84473abe1
 content-type: application/json
 
 {
@@ -28,64 +50,8 @@ content-type: application/json
     "imageUrl": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
     "tags": ["jewelery", "rose gold", "stainless steel", "earrings"],
     "price": 10.99,
-    "stock": 100,
-    "priceHistory": [
-        
-    ],
-    "stockHistory": [
-        
-    ],
+    "stock": 90,
     "rating": 4
-}
-
-
-
-### Edit product
-PUT {{URL}}/65289ef920a9104af578e263
-content-type: application/json
-
-{
-    "_id": "65289ef920a9104af578e263",
-    "name": "2TB External Hard Drive - USB 3.0",
-    "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
-    "sku": "9",
-    "imageUrl": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
-    "tags": [
-        "electronics",
-        "hard drive",
-        "usb 3.0",
-        "external"
-    ],
-    "price": 65,
-    "stock": 203,
-    "priceHistory": [
-        {
-            "date": "2023-02-01T00:00:00.000Z",
-            "price": 70,
-            "_id": "65289ef920a9104af578e264"
-        },
-        {
-            "date": "2023-03-01T00:00:00.000Z",
-            "price": 64,
-            "_id": "65289ef920a9104af578e265"
-        }
-    ],
-    "stockHistory": [
-        {
-            "date": "2023-02-01T00:00:00.000Z",
-            "stock": 210,
-            "_id": "65289ef920a9104af578e266"
-        },
-        {
-            "date": "2023-03-01T00:00:00.000Z",
-            "stock": 203,
-            "_id": "65289ef920a9104af578e267"
-        }
-    ],
-    "rating": 1,
-    "category": "Accessories",
-    "inventoryStatus": "INSTOCK",
-    "__v": 0
 }
 
 ### delete product by id

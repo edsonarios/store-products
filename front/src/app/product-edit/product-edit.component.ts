@@ -135,7 +135,17 @@ export class ProductEditComponent implements OnInit {
     }
 
     editProduct(): void {
-        const productToEdit = this.product
+        const productToEdit: Product = {
+            name: this.product.name,
+            description: this.product.description,
+            price: this.product.price,
+            stock: this.product.stock,
+            sku: this.product.sku,
+            imageUrl: this.product.imageUrl,
+            rating: 0,
+            tags: []
+        }
+
         if (this.ratingSelected) {
             productToEdit.rating = this.ratingSelected.value
         }
@@ -144,7 +154,7 @@ export class ProductEditComponent implements OnInit {
             productToEdit.tags = this.selectedCategories.map(category => category.toLowerCase())
         }
 
-        const productId = productToEdit._id ? productToEdit._id : ''
+        const productId = this.product._id ? this.product._id : ''
         this.productService.editProduct(productId, productToEdit)
     }
 

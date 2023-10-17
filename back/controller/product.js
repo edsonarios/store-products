@@ -90,6 +90,7 @@ exports.updateProduct = async (req, res, next) => {
         if (!product) {
             return res.status(404).send({ message: `Product with id ${id} not found` })
         }
+        console.log(req.body)
 
         if (req.body.price && product.price !== req.body.price) {
             product.priceHistory.push({ date: new Date(), price: req.body.price })
